@@ -4,7 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.webkit.WebSettings
-import android.widget.Button
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class YoutubeActivity : AppCompatActivity() {
@@ -12,17 +13,21 @@ class YoutubeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_youtube)
 
-        val Change : FloatingActionButton = findViewById(R.id.floatingActionButton2)
-//        val webSettings: WebSettings = binding.youtubeWebView.settings webSettings.javaScriptEnabled = true
-//        webSettings.LoadWithOverviewMode = true
-//        webSettings.useWideViewPort = true
-//        binding.youtubeWebView.loadUrl("https://www.youtube.com/embed/SyoutubeId")
-//
+        val youtubeId = "fJn9B64Znrk"
+        val youtubeWebView : WebView = findViewById(R.id.webView)
+        val webSettings : WebSettings = youtubeWebView.settings
+        webSettings.javaScriptEnabled = true
+        webSettings.loadWithOverviewMode = true
+        webSettings.useWideViewPort = true
+        youtubeWebView.loadUrl("https://www.youtube.com/embed/$youtubeId")
 
-        val webSettings : WebSettings = 
+        val changeButton: FloatingActionButton = findViewById(R.id.floatingActionButton2)
 
-        Change.setOnClickListener {
-            Intent(this@YoutubeActivity,MainActivity::class.java).also { startActivity(it) }
+
+
+        changeButton.setOnClickListener {
+            val intent = Intent(this@YoutubeActivity, MainActivity::class.java)
+            startActivity(intent)
         }
     }
 }
