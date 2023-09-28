@@ -4,7 +4,6 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.MediaController
 import android.widget.VideoView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -14,18 +13,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val myVideoView = findViewById<VideoView>(R.id.videoView)
+        val myVideoview : VideoView = findViewById(R.id.videoview)
         val mediaController = MediaController(this)
-        val uri : Uri = Uri.parse("android.resource://"+packageName +"/"+R.raw.thestoryoflight)
-        myVideoView.setVideoURI(uri)
-        myVideoView.requestFocus()
-        myVideoView.start()
+        val uri: Uri = Uri.parse("android.resource://" + packageName + "/" + R.raw.thestoryoflight)
+        myVideoview.setMediaController(mediaController)
+        mediaController.setAnchorView(myVideoview)
+        myVideoview.setVideoURI(uri)
+        myVideoview.requestFocus()
+        myVideoview.start()
 
-        val Change : FloatingActionButton = findViewById(R.id.floatingActionButton2)
-
-        Change.setOnClickListener {
-            Intent(this@MainActivity,YoutubeActivity::class.java).also { startActivity(it) }
+        val button = findViewById<FloatingActionButton>(R.id.floatingActionButton)
+        button.setOnClickListener {
+            Intent(this,YoutubeActivity::class.java).apply { startActivity(this) }
         }
     }
-
 }
